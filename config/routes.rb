@@ -1,12 +1,22 @@
 Bebezito::Application.routes.draw do
+  
+
   devise_for :users
-  resources :listings
+  resources :listings do
+  resources :orders, only: [:new, :create]
+
+end
 
   get "pages/sobre"
   get "pages/como"
   get "pages/contato"
+  #esse abaixo cria uma nova url localhost/seller e depois a liga com as pagionas que tem haver com listings
+  get 'seller' => "listings#seller"
 
   root 'listings#index'
+
+  get 'sales' => "orders#sales"
+  get 'purchases' => "orders#purchases"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

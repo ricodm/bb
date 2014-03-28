@@ -1,3 +1,8 @@
+<div class="jumbotron">
+  <h1>Marketplace de brinquedos.</h1> 
+  <h2>Entre mães, como você.</h2>
+</div>
+
 <div class="center">
   <div class="row">
     <% @listings.each do |listing| %>
@@ -9,11 +14,7 @@
             <p><%= number_to_currency(listing.price) %></p>
             <p><%= "Sold by #{listing.user.name}" %></p>
             <%= link_to "Show", listing, class: "btn btn-link" %>
-            <%# Esse if é o que mostra os links se o cara estiver logado%>
-            <% if (user_signed_in?) && (current_user == listing.user) %>
-              <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-link" %>
-              <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
-            <% end %>
+            
           </div>
         </div>
       </div>

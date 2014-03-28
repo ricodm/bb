@@ -34,14 +34,27 @@
  <%# links da direira%>
   <ul class="nav navbar-nav navbar-right">
     <% if user_signed_in? %>
-    <li><%= link_to "Sing Out", destroy_user_session_path, method: :delete %></li>
-    <li><%= link_to "Editar perfil", edit_user_registration_path%></li>
 
-    <% else %>
+     <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seller Account <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Manage Listings", seller_path %></li>
+            <li><%= link_to "Sales History", sales_path %></li>
+          </ul>
+        </li>
 
-    <li><%= link_to "Sing Up", new_user_registration_path %></li>    
-    <li><%= link_to "Sing In", new_user_session_path%></li>
-    <% end %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Purchase History", purchases_path %></li>
+            <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+      <% end %>
   </ul>
 
            <%# campo de busca%>
@@ -51,10 +64,9 @@
           <input type="text" class="form-control" placeholder="O que busca hoje?">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
-      </form>
+      </form>    
+  
 
 
-      
-    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
